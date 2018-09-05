@@ -37,4 +37,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and();
                 //add two filter authetication and authorization when done
     }
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }
