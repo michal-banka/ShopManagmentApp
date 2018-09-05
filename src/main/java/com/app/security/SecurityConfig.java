@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
+@SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -23,6 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("admin").password("admin").roles("ADMIN", "USER")
                 .and()
                 .withUser("super").password("super").roles("SUPER", "ADMIN", "USER");
+
     }
 
     @Override
@@ -30,13 +32,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
 
-                //default authetication
-                .anyRequest().authenticated()
+                // konfiguracja kto moze wchodzi na nasze podstrony
+                .antMatchers("/").permitAll()
+                .anyRequest().authenticated() // kazde inne zadanie poza wymienionymi
+                // bedzie podlegac po prostu dowolnej autentykacji
 
-                //login form
+                // podpinamy formularz logowania
                 .and()
                 .formLogin()
 
+                // podpinamy metody koncowe
                 .and()
                 .httpBasic();
     }
