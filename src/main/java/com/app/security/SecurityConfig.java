@@ -30,6 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SecurityConstants.REGISTER_URL).permitAll()
+                .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and();
                 //add two filter authetication and authorization when done
