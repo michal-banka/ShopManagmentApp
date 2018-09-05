@@ -2,6 +2,8 @@ package com.app.controllers;
 
 import com.app.models.Role;
 import com.app.models.dto.UserDto;
+import com.app.service.UserService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -15,6 +17,14 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private UserService userService;
+
+    public UserController(BCryptPasswordEncoder bCryptPasswordEncoder, UserService userService) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.userService = userService;
+    }
 
     @GetMapping("/register")
     public String userRegisterGet(Model model){
@@ -42,6 +52,8 @@ public class UserController {
             return "user/register";
         }
 
-        userDto.setPassword();
+        userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
+        userService.addOrUpdateUser(userDto);
+        return "redirect:/";
     }
 }
