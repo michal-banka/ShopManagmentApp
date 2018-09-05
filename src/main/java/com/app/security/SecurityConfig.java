@@ -30,10 +30,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SecurityConstants.REGISTER_URL).permitAll()
-                .antMatchers("/").permitAll()
+                .antMatchers("/", "/user/register").permitAll()
                 .anyRequest().authenticated()
-                .and();
+                .and()
                 //add two filter authetication and authorization when done
+                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
+                .addFilter(new JWTAuthorizationFilter(authenticationManager()));
     }
 
     @Bean

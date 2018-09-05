@@ -15,8 +15,8 @@ import java.time.LocalDate;
 public class UserDto {
     private Long id;
     private String username;
-    private String email;
     private String password;
+    private String email;
     private String passwordConfirmation;
     private boolean isActive;
     private LocalDate expirationDate;

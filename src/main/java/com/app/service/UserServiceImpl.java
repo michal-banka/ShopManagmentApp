@@ -3,9 +3,11 @@ package com.app.service;
 import com.app.models.dto.ConverterDto;
 import com.app.models.dto.UserDto;
 import com.app.repository.UserRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private ConverterDto converterDto;

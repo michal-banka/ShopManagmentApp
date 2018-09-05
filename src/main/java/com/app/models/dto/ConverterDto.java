@@ -6,36 +6,31 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConverterDto {
 
-    public UserDto userToUserDto(User user){
-        if (user != null)
-        {
-            return new UserDto(
-                    user.getId(),
-                    user.getUsername(),
-                    user.getEmail(),
-                    user.getPassword(),
-                    "",
-                    user.isActive(),
-                    user.getExpirationDate(),
-                    user.getRole()
-            );
-        }
-        return null;
+    public UserDto userToUserDto(User user)
+    {
+
+        return user == null ? null : new UserDto(
+                user.getId(),
+                user.getUsername(),
+                user.getPassword(),
+                user.getEmail(),
+                "",
+                user.isActive(),
+                user.getExpirationDate(),
+                user.getRole()
+        );
     }
 
     public User userDtoToUser(UserDto userDto)
     {
-        if (userDto != null) {
-            return new User(
-                    userDto.getId(),
-                    userDto.getUsername(),
-                    userDto.getEmail(),
-                    userDto.getPassword(),
-                    userDto.isActive(),
-                    userDto.getExpirationDate(),
-                    userDto.getRole()
-            );
-        }
-        return null;
+        return userDto == null ? null : new User(
+                userDto.getId(),
+                userDto.getUsername(),
+                userDto.getPassword(),
+                userDto.getEmail(),
+                userDto.isActive(),
+                userDto.getExpirationDate(),
+                userDto.getRole()
+        );
     }
 }

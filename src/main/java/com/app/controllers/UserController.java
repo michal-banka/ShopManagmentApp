@@ -2,19 +2,23 @@ package com.app.controllers;
 
 import com.app.models.Role;
 import com.app.models.dto.UserDto;
+import com.app.security.SecurityConstants;
 import com.app.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
 
@@ -51,7 +55,7 @@ public class UserController {
             model.addAttribute("errors", errors);
             return "user/register";
         }
-
+        
         userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         userService.addOrUpdateUser(userDto);
         return "redirect:/";

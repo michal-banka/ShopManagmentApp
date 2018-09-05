@@ -18,11 +18,11 @@ package com.app.security;
         import java.util.ArrayList;
         import java.util.Date;
 
-public class JWTAutheticationFilter extends UsernamePasswordAuthenticationFilter {
+public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager authenticationManager;
 
-    public JWTAutheticationFilter(AuthenticationManager authenticationManager) {
+    public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
 
