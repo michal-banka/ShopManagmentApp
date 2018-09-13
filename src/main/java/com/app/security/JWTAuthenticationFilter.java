@@ -1,22 +1,30 @@
 package com.app.security;
 
-        import com.app.models.User;
-        import com.fasterxml.jackson.databind.ObjectMapper;
+import com.app.models.User;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
         import io.jsonwebtoken.Jwts;
         import io.jsonwebtoken.SignatureAlgorithm;
         import org.springframework.security.authentication.AuthenticationManager;
         import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
         import org.springframework.security.core.Authentication;
         import org.springframework.security.core.AuthenticationException;
-        import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
         import javax.servlet.FilterChain;
         import javax.servlet.ServletException;
-        import javax.servlet.http.HttpServletRequest;
+import javax.servlet.ServletInputStream;
+import javax.servlet.http.HttpServletRequest;
         import javax.servlet.http.HttpServletResponse;
         import java.io.IOException;
         import java.util.ArrayList;
         import java.util.Date;
+import java.util.List;
+
+import static com.app.security.SecurityConstants.HEADER_STRING;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -28,8 +36,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+
         try {
-            User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
+            ServletInputStream servletInputStream = request.getInputStream();
+            User user = new ObjectMapper().readValue(servletInputStream, User.class);
+
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             user.getUsername(),
@@ -42,7 +53,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         }
     }
 
-    @Override
+        @Override
     protected void successfulAuthentication(
             HttpServletRequest request,
             HttpServletResponse response,
@@ -57,6 +68,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET)
                 .compact();
         //header part
-        response.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
+        response.addHeader(HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
     }
 }

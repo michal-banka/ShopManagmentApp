@@ -8,4 +8,8 @@ public class ShopManagmentAppApplication {
     public static void main(String[] args) {
         SpringApplication.run(ShopManagmentAppApplication.class, args);
     }
+
+    /*
+    * todo
+    * -add jwt*/
 }

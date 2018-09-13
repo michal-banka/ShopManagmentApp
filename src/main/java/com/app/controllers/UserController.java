@@ -55,9 +55,11 @@ public class UserController {
             model.addAttribute("errors", errors);
             return "user/register";
         }
-        
+
         userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         userService.addOrUpdateUser(userDto);
         return "redirect:/";
     }
+
+
 }
