@@ -1,7 +1,7 @@
 package com.app.service;
 
-import com.app.models.dto.ConverterDto;
-import com.app.models.dto.UserDto;
+import com.app.models.user.dto.ConverterDto;
+import com.app.models.user.dto.UserDto;
 import com.app.repository.UserRepository;
 import org.springframework.stereotype.Service;
 

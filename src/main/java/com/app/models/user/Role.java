@@ -1,4 +1,4 @@
-package com.app.models;
+package com.app.models.user;
 
 public enum Role {
     USER,

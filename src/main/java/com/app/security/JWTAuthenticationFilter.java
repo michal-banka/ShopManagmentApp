@@ -1,8 +1,6 @@
 package com.app.security;
 
-import com.app.models.User;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
+import com.app.models.user.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
         import io.jsonwebtoken.Jwts;
         import io.jsonwebtoken.SignatureAlgorithm;
@@ -10,8 +8,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
         import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
         import org.springframework.security.core.Authentication;
         import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
         import javax.servlet.FilterChain;
@@ -22,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
         import java.io.IOException;
         import java.util.ArrayList;
         import java.util.Date;
-import java.util.List;
 
 import static com.app.security.SecurityConstants.HEADER_STRING;
 

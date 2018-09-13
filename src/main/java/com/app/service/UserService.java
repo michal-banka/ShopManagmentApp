@@ -1,6 +1,6 @@
 package com.app.service;
 
-import com.app.models.dto.UserDto;
+import com.app.models.user.dto.UserDto;
 
 import java.util.Optional;
 

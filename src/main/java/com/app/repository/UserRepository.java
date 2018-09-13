@@ -1,6 +1,6 @@
 package com.app.repository;
 
-import com.app.models.User;
+import com.app.models.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

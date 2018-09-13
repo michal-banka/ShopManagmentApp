@@ -1,28 +1,24 @@
-package com.app.models;
+package com.app.models.user.dto;
 
+import com.app.models.user.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-
-public class User {
-    @Id
-    @GeneratedValue
+public class UserDto {
     private Long id;
     private String username;
     private String password;
     private String email;
+    private String passwordConfirmation;
     private boolean isActive;
     private LocalDate expirationDate;
-    @Enumerated(EnumType.STRING)
     private Role role;
 }

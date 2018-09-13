@@ -1,8 +1,7 @@
 package com.app.controllers;
 
-import com.app.models.Role;
-import com.app.models.dto.UserDto;
-import com.app.security.SecurityConstants;
+import com.app.models.user.Role;
+import com.app.models.user.dto.UserDto;
 import com.app.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -12,8 +11,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
