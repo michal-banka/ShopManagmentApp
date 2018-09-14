@@ -13,5 +13,6 @@ public class ShopManagmentAppApplication {
     * TODO
     * -add jwt + authenticate roles
     * -Validation
+    * -logout button change with login button
     * */
 }

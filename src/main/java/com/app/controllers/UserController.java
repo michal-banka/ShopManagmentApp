@@ -58,5 +58,17 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/login")
+    public String login(Model model)
+    {
+        model.addAttribute("error", "");
+        return "user/login";
+    }
 
+    @GetMapping("/login/error")
+    public String loginError(Model model)
+    {
+        model.addAttribute("error", "Logging error!");
+        return "user/login";
+    }
 }

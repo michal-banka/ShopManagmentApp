@@ -30,17 +30,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SecurityConstants.REGISTER_URL).permitAll()
-                .antMatchers( "/user/register").permitAll()
+                .antMatchers( "/user/register", "/").permitAll()
                 .anyRequest().authenticated()
 
                 //form login
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/user/login").permitAll()
                 .loginProcessingUrl("/app-login")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .failureUrl("/login/failure");
+                .failureUrl("/user/login/error")
+
+                //logout
+                .and()
+                .logout().permitAll()
+                .logoutUrl("/app-logout")
+                .clearAuthentication(true)
+                .logoutSuccessUrl("/");
 
                 //.and()
                 //.addFilter(new JWTAuthenticationFilter(authenticationManager()))
