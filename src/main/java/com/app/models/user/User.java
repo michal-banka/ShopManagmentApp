@@ -1,5 +1,6 @@
 package com.app.models.user;
 
+import com.app.models.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,4 +26,7 @@ public class User {
     private LocalDate expirationDate;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "customer_id", unique = true)
+    private Customer customer;
 }

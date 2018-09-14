@@ -1,5 +1,6 @@
 package com.app.models.user.dto;
 
+import com.app.models.Customer;
 import com.app.models.user.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,4 +22,5 @@ public class UserDto {
     private boolean isActive;
     private LocalDate expirationDate;
     private Role role;
+    private Customer customer;
 }

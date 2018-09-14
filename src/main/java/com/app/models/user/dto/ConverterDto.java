@@ -17,7 +17,8 @@ public class ConverterDto {
                 "",
                 user.isActive(),
                 user.getExpirationDate(),
-                user.getRole()
+                user.getRole(),
+                user.getCustomer()
         );
     }
 
@@ -30,7 +31,8 @@ public class ConverterDto {
                 userDto.getEmail(),
                 userDto.isActive(),
                 userDto.getExpirationDate(),
-                userDto.getRole()
+                userDto.getRole(),
+                userDto.getCustomer()
         );
     }
 }

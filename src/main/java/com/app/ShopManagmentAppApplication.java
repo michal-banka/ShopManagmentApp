@@ -10,6 +10,8 @@ public class ShopManagmentAppApplication {
     }
 
     /*
-    * todo
-    * -add jwt*/
+    * TODO
+    * -add jwt + authenticate roles
+    * -Validation
+    * */
 }
