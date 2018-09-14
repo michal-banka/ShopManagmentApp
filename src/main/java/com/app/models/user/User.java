@@ -1,13 +1,12 @@
 package com.app.models.user;
 
-import com.app.models.Customer;
+import com.app.models.utility.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor

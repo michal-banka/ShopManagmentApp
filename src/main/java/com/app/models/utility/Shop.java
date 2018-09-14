@@ -1,4 +1,4 @@
-package com.app.models;
+package com.app.models.utility;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,11 +12,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
-public class Payment {
+public class Shop {
     @Id
     @GeneratedValue
     private Long id;
-    @Enumerated(EnumType.STRING)
-    private EPayment payment;
+    private String name;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @JoinColumn(name="country_id")
+    private Country country;
 }

@@ -1,13 +1,11 @@
 package com.app.models.user.dto;
 
-import com.app.models.Customer;
+import com.app.models.utility.Customer;
 import com.app.models.user.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor

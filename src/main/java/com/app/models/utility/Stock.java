@@ -1,4 +1,5 @@
-package com.app.models;
+package com.app.models.utility;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,18 +9,19 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-public class Customer {
+public class Stock {
     @Id
     @GeneratedValue
     private Long id;
-    private String name;
-    private String surname;
-    private Integer age;
+    private Integer quantity;
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    @JoinColumn(name = "country_id")
-    private Country country;
+    @JoinColumn(name="product_id")
+    private Product product;
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @JoinColumn(name="shop_id")
+    private Shop shop;
 }
