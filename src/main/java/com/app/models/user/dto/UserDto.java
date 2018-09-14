@@ -17,10 +17,9 @@ public class UserDto {
     private Long id;
     private String username;
     private String password;
-    private String email;
     private String passwordConfirmation;
+    private String email;
     private boolean isActive;
-    private LocalDate expirationDate;
     private Role role;
     private Customer customer;
 }

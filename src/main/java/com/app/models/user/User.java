@@ -23,7 +23,6 @@ public class User {
     private String password;
     private String email;
     private boolean isActive;
-    private LocalDate expirationDate;
     @Enumerated(EnumType.STRING)
     private Role role;
     @OneToOne(cascade = CascadeType.PERSIST)

@@ -13,10 +13,9 @@ public class ConverterDto {
                 user.getId(),
                 user.getUsername(),
                 user.getPassword(),
-                user.getEmail(),
                 "",
+                user.getEmail(),
                 user.isActive(),
-                user.getExpirationDate(),
                 user.getRole(),
                 user.getCustomer()
         );
@@ -30,7 +29,6 @@ public class ConverterDto {
                 userDto.getPassword(),
                 userDto.getEmail(),
                 userDto.isActive(),
-                userDto.getExpirationDate(),
                 userDto.getRole(),
                 userDto.getCustomer()
         );
