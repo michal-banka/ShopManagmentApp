@@ -32,8 +32,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, SecurityConstants.REGISTER_URL).permitAll()
                 .antMatchers( "/user/register").permitAll()
                 .anyRequest().authenticated()
+
+                //form login
                 .and()
-                .formLogin();
+                .formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/app-login")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .failureUrl("/login/failure");
 
                 //.and()
                 //.addFilter(new JWTAuthenticationFilter(authenticationManager()))
