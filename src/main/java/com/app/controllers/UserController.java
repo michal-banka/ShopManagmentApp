@@ -2,6 +2,7 @@ package com.app.controllers;
 
 import com.app.models.user.Role;
 import com.app.models.user.dto.UserDto;
+import com.app.models.utility.Customer;
 import com.app.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -38,6 +39,7 @@ public class UserController {
 
     @PostMapping("/register")
     public String userRegisterPost( @Valid @ModelAttribute UserDto userDto,
+                                    Customer customer,
                                     BindingResult bindingResult,
                                     Model model){
         if (bindingResult.hasErrors())
@@ -48,13 +50,15 @@ public class UserController {
                     .stream()
                     .collect(Collectors.toMap(FieldError::getField, FieldError::getCode));
             model.addAttribute("user", userDto);
+            model.addAttribute("customer", customer);
             model.addAttribute("roles", Role.values());
             model.addAttribute("errors", errors);
             return "user/register";
         }
 
         userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
-        userService.addOrUpdateUser(userDto);
+        userDto.setCustomer(customer);
+        userService.addOrUpdateUser(userDto, customer);
         return "redirect:/";
     }
 
