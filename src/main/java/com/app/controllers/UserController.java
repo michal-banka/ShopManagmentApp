@@ -3,6 +3,7 @@ package com.app.controllers;
 import com.app.models.user.Role;
 import com.app.models.user.dto.UserDto;
 import com.app.models.utility.Customer;
+import com.app.service.CountryService;
 import com.app.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ public class UserController {
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     private UserService userService;
+    private CountryService countryService;
 
     public UserController(BCryptPasswordEncoder bCryptPasswordEncoder, UserService userService) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
@@ -31,7 +33,9 @@ public class UserController {
     @GetMapping("/register")
     public String userRegisterGet(Model model){
         model.addAttribute("user", new UserDto());
+        model.addAttribute("customer", new Customer());
         model.addAttribute("roles", Role.values());
+
         //for validation
         model.addAttribute("errors", new HashMap<>());
         return "user/register";
@@ -58,6 +62,8 @@ public class UserController {
 
         userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         userDto.setCustomer(customer);
+        //todo
+        //change this, customer is unnecessary below
         userService.addOrUpdateUser(userDto, customer);
         return "redirect:/";
     }
