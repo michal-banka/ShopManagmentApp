@@ -62,10 +62,6 @@
                     <input id="password" class="form-control" type="password" th:field="*{password}"/>
                 </div>
 
-                <div th:if="${errors.containsKey('password')}">
-                    <p class="text-danger" th:text="${errors.get('password')}"></p>
-                </div>
-
                 <div class="form-group">
                     <label for="passwordC">Password confirmation:</label>
                     <input id="passwordC" class="form-control" type="password" th:field="*{passwordConfirmation}"/>
